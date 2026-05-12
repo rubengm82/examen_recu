@@ -10,9 +10,14 @@ body{
     grid-template-columns: repeat(2, auto);
     gap: 10px;
     justify-content: center;
-    border: red 1px solid;
 }
 
 .navbar a{
     text-decoration: none;
+}
+
+.form {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
 }

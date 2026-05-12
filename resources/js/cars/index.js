@@ -4,7 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const carsContent = document.querySelector(".showCars");
 
     // Se hace la peticion para obtener los datos del controller API de laravel
-    fetch("api/cars")
+    fetch("/api/cars", {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+        credentials: "same-origin"
+    })
     .then(response => response.json())
     .then(data => {
         let content = "";

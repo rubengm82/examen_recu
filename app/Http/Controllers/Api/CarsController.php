@@ -14,11 +14,13 @@ class CarsController extends Controller
     public function index()
     {
         $cars = Car::all();
+        $response = null;
         if ($cars->isEmpty()) {
-            return response()->json(["message" => "No hay coches aun", "cars" => null], 404);
+            $response = response()->json(["message" => "No hay coches aun", "cars" => null], 404);
         } else {
-            return response()->json(["message" => "Hay coches", "cars" =>$cars], 200);
+            $response = response()->json(["message" => "Hay coches", "cars" => $cars], 200);
         }
+        return $response;
     }
 
     /**
@@ -42,7 +44,16 @@ class CarsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $car = Car::find($id);
+        $response = null;
+
+        if (!$car) {
+            $response = response()->json(["message" => "Coche no encontrado", "car" => null], 404);
+        } else {
+            $response = response()->json(["message" => "Coche encontrado", "car" => $car], 200);
+        }
+
+        return $response;
     }
 
     /**
@@ -50,7 +61,24 @@ class CarsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $car = Car::find($id);
+        $response = null;
+
+        if (!$car) {
+            $response = response()->json(["message" => "Coche no encontrado"], 404);
+        } else {
+            $validate = $request->validate([
+                "name" => "required|string",
+                "model" => "required|string",
+                "price" => "required|numeric",
+                "owner_id" => "nullable|exists:owners,id"
+            ]);
+
+            $car->update($validate);
+            $response = response()->json(["message" => "Coche actualizado correctamente", "car" => $car], 200);
+        }
+
+        return $response;
     }
 
     /**
@@ -58,6 +86,16 @@ class CarsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $car = Car::find($id);
+        $response = null;
+
+        if (!$car) {
+            $response = response()->json(["message" => "Coche no encontrado"], 404);
+        } else {
+            $car->delete();
+            $response = response()->json(["message" => "Coche eliminado correctamente"], 200);
+        }
+
+        return $response;
     }
 }

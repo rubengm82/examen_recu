@@ -13,4 +13,5 @@
 
     <button type="submit">Crear coche</button>
 </form>
+<div id="createCarMessage"></div>
 @endsection

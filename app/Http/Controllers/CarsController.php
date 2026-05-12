@@ -35,7 +35,7 @@ class CarsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view("cars.show", compact("id"));
     }
 
     /**
@@ -43,7 +43,7 @@ class CarsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view("cars.edit", compact("id"));
     }
 
     /**

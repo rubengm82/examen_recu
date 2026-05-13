@@ -1,0 +1,70 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.principal-container{
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    background-color: red;
+    /* Se crean 4 columnas (son las verticales) de 1fr  */
+    grid-template-columns:repeat(4, 1fr);
+    /* Se crean 4 filas (son las horizontales) de 1fr  */
+    grid-template-rows:10% repeat(5, 1fr) 10%;
+}
+
+.sidebar{
+    background-color: blue;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    /* Se hace que el sidebar ocupe todas las columnas de alto*/
+    grid-row: 1 / -2;
+}
+
+.sidebar p{
+    font-size: clamp(1rem, 3vw, 5rem);
+}
+
+.navbar{
+    background-color: green;
+    /* Se pone en la posicion de la numero 2 a la ultima */
+    grid-column: 2 / -1;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.navbar p{
+    font-size: clamp(1rem, 3vw, 5rem);
+}
+
+.cards {
+    grid-column: 2 / -1;
+    grid-row: 2 / -2;
+    background-color: orange;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.cards .card {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border: blue 1px solid;
+    background-color: brown;
+}
+
+.footer {
+    grid-column: 1 / -1;
+
+    display: grid;
+    background-color: yellow;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer p {
+    font-size: clamp(1rem, 3vw, 5rem);
+}

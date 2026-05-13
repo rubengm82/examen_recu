@@ -30,7 +30,8 @@ body{
 
 .showCars {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(clamp(14rem, 22vw, 18rem), 1fr));
+    /*grid-template-columns: repeat(auto-fill, minmax(clamp(14rem, 22vw, 18rem), 1fr));*/
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: clamp(0.75rem, 1.5vw, 1.25rem);
     align-items: start;
 }

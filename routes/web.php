@@ -3,11 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\OwnersController;
+use App\Http\Controllers\ProjectsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect()->route('cars.index');
-});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -17,7 +15,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::view("/", "dashboard")->name("dashboard");
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('cars', CarsController::class);
+    Route::resource('projects', ProjectsController::class);
     Route::resource('owners', OwnersController::class);
 });

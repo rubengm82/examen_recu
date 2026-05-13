@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function login(Request $request): JsonResponse
     {
         $credentials = $request->validate([
-            "email" => "required|email",
+            "username" => "required|string",
             "password" => "required|string",
         ]);
         $response = null;
@@ -28,7 +28,7 @@ class AuthController extends Controller
             $response = response()->json(["message" => "Credenciales incorrectas."], 401);
         } else {
             $request->session()->regenerate();
-            $response = response()->json(["message" => "Login correcto.", "redirect" => route("cars.index")], 200);
+            $response = response()->json(["message" => "Login correcto.", "redirect" => route("dashboard")], 200);
         }
 
         return $response;

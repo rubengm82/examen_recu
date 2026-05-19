@@ -2,12 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class ProjectSeeder extends Seeder
 {
@@ -15,46 +12,46 @@ class ProjectSeeder extends Seeder
 
     public function run(): void
     {
-        DB::table("projects")->insert([
+        $projects = [
             [
-                "nombre" => "Projecte 1",
-                "descripcion" => "Descripcion projecto 1",
-                "fecha_inicio" => Date::now(),
-                "fecha_fin" => Date::now(),
-
-                "user_id" => 1,
+                'nombre' => 'Projecte 1',
+                'descripcion' => 'Descripcion projective 1',
+                'fecha_inicio' => now()->subDays(30),
+                'fecha_fin' => now()->subDays(10),
+                'user_id' => 1,
             ],
             [
-                "nombre" => "Projecte 2",
-                "descripcion" => "Descripcion projecto 2",
-                "fecha_inicio" => Date::now(),
-                "fecha_fin" => Date::now(),
-
-                "user_id" => 1,
+                'nombre' => 'Projecte 2',
+                'descripcion' => 'Descripcion projective 2',
+                'fecha_inicio' => now()->subDays(24),
+                'fecha_fin' => now()->subDays(8),
+                'user_id' => 1,
             ],
             [
-                "nombre" => "Projecte 3",
-                "descripcion" => "Descripcion projecto 3",
-                "fecha_inicio" => Date::now(),
-                "fecha_fin" => Date::now(),
-
-                "user_id" => 1,
+                'nombre' => 'Projecte 3',
+                'descripcion' => 'Descripcion projective 3',
+                'fecha_inicio' => now()->subDays(18),
+                'fecha_fin' => now()->subDays(6),
+                'user_id' => 1,
             ],
             [
-                "nombre" => "Projecte 4",
-                "descripcion" => "Descripcion projecto 4",
-                "fecha_inicio" => Date::now(),
-                "fecha_fin" => Date::now(),
-
-                "user_id" => 1,
-            ],            [
-                "nombre" => "Projecte 5",
-                "descripcion" => "Descripcion projecto 5",
-                "fecha_inicio" => Date::now(),
-                "fecha_fin" => Date::now(),
-
-                "user_id" => 2,
+                'nombre' => 'Projecte 4',
+                'descripcion' => 'Descripcion projective 4',
+                'fecha_inicio' => now()->subDays(12),
+                'fecha_fin' => now()->subDays(3),
+                'user_id' => 1,
             ],
-        ]);
+            [
+                'nombre' => 'Projecte 5',
+                'descripcion' => 'Descripcion projective 5',
+                'fecha_inicio' => now()->subDays(6),
+                'fecha_fin' => now(),
+                'user_id' => 2,
+            ],
+        ];
+
+        foreach ($projects as $project) {
+            Project::create($project);
+        }
     }
 }

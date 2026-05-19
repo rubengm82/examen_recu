@@ -2,12 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Task;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class TaskSeeder extends Seeder
 {
@@ -15,19 +12,26 @@ class TaskSeeder extends Seeder
 
     public function run(): void
     {
-        DB::table("tasks")->insert([
+        $tasks = [
             [
-                "descripcion" => "Descripcion projecto 1",
-                "project_id" => 1,
+                'descripcion' => 'Descripcion tarefa 1',
+                'completada' => false,
+                'project_id' => 1,
             ],
             [
-                "descripcion" => "Descripcion projecto 2",
-                "project_id" => 1,
+                'descripcion' => 'Descripcion tarefa 2',
+                'completada' => true,
+                'project_id' => 1,
             ],
             [
-                "descripcion" => "Descripcion projecto 3",
-                "project_id" => 1,
+                'descripcion' => 'Descripcion tarefa 3',
+                'completada' => false,
+                'project_id' => 1,
             ],
-        ]);
+        ];
+
+        foreach ($tasks as $task) {
+            Task::create($task);
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProjectController extends Controller
 {
@@ -14,12 +15,19 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::where("user_id", auth()->user()->id)->with("tasks")->get();
+        
+        // $user = auth()->user();
+        // $projects2 = $user->projects()->with('tasks')->get();
+        // Log::info($projects2);
+        // Log::info($projects2->toArray());
+
         $response = null;
 
         if ($projects->isEmpty()) {
             $response = response()->json(["message" => "No hay proyectos aun", "projects" => null], 404);
         } else {
             $response = response()->json(["message" => "Hay proyectos", "projects" => $projects], 200);
+            //$response = response()->json(["message" => "Hay proyectos", "projects" => $projects, "projects2" => $projects2], 200);
         }
         return $response;
     }

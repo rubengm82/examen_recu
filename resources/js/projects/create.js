@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             messageContent.innerHTML = `<p>${data.message}</p>`;
-            if (data.message === "Coche creado correctamente") {
+            if (data.message === "Creado correctamente") {
                 form.reset();
             }
         })

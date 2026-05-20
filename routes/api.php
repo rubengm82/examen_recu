@@ -13,7 +13,7 @@ Route::get('/test', function () {
 // GET        /api/cars/{car}     --> api.cars.show
 // PUT/PATCH  /api/cars/{car}     --> api.cars.update
 // DELETE     /api/cars/{car}     --> api.cars.destroy
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:web')->group(function () {
     Route::apiResource('cars', CarsController::class)->names('api.cars');
 
     Route::apiResource('projects', ProjectController::class)->names('api.projects');

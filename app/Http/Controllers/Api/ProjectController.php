@@ -24,9 +24,9 @@ class ProjectController extends Controller
         $response = null;
 
         if ($projects->isEmpty()) {
-            $response = response()->json(["message" => "No hay proyectos aun", "projects" => null], 404);
+            $response = response()->json(["message" => "No hay aún items", "projects" => null], 404);
         } else {
-            $response = response()->json(["message" => "Hay proyectos", "projects" => $projects], 200);
+            $response = response()->json(["message" => "Hay items", "projects" => $projects], 200);
             //$response = response()->json(["message" => "Hay proyectos", "projects" => $projects, "projects2" => $projects2], 200);
         }
         return $response;
@@ -46,7 +46,7 @@ class ProjectController extends Controller
         ]);
         $validate["user_id"] = auth()->user()->id;
         Project::create($validate);
-        return response()->json(["message" => "Proyecto creado correctamente"], 200);
+        return response()->json(["message" => "Creado correctamente"], 200);
     }
 
     /**
@@ -59,9 +59,9 @@ class ProjectController extends Controller
         $response = null;
 
         if (!$project) {
-            $response = response()->json(["message" => "Proyecto no encontrado", "project" => null], 404);
+            $response = response()->json(["message" => "No encontrado", "project" => null], 404);
         } else {
-            $response = response()->json(["message" => "Proyecto encontrado", "project" => $project], 200);
+            $response = response()->json(["message" => "Encontrado", "project" => $project], 200);
         }
 
         return $response;
@@ -76,7 +76,7 @@ class ProjectController extends Controller
         $response = null;
 
         if (!$project) {
-            $response = response()->json(["message" => "Proyecto no encontrado"], 404);
+            $response = response()->json(["message" => "No encontrado"], 404);
         } else {
             $validate = $request->validate([
                 "nombre" => "required|string",
@@ -86,7 +86,7 @@ class ProjectController extends Controller
             ]);
 
             $project->update($validate);
-            $response = response()->json(["message" => "Proyecto actualizado correctamente", "project" => $project], 200);
+            $response = response()->json(["message" => "Actualizado correctamente", "project" => $project], 200);
         }
 
         return $response;
@@ -101,10 +101,10 @@ class ProjectController extends Controller
         $response = null;
 
         if (!$project) {
-            $response = response()->json(["message" => "Proyecto no encontrado"], 404);
+            $response = response()->json(["message" => "No encontrado"], 404);
         } else {
             $project->delete();
-            $response = response()->json(["message" => "Proyecto eliminado correctamente"], 200);
+            $response = response()->json(["message" => "Eliminado correctamente"], 200);
         }
 
         return $response;

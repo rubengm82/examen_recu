@@ -65,10 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                 .then(response => response.json())
                 .then(deleteData => {
-                    if (deleteData.message === "Coche eliminado correctamente") {
+                    if (deleteData.message === "Eliminado correctamente") {
                         button.parentElement.remove();
                     }
-                    window.location.reload();
+                    console.log(deleteData.message);
                 })
                 .catch(error => {
                     console.log("Error al eliminar el proyecto");

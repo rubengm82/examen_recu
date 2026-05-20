@@ -15,6 +15,7 @@
 
   <header>
     <h1>GESTOR DELS MEUS PROJECTES</h1>
+    <p>{{auth()->user()->name}}</p>
   </header>
 
   <a href="{{ route("projects.create") }}">Nuevo proyecto</a>

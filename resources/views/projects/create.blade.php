@@ -24,7 +24,7 @@
     <button type="submit">Crear proyecto</button>
 </form>
 
-<div id="createCarMessage"></div>
+<div id="createProjectMessage"></div>
 
 </body>
 </html>

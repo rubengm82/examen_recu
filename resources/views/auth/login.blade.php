@@ -4,24 +4,24 @@
 
 @section('content')
     <h1>Login</h1>
-
-    @vite('resources/js/auth/login.js')
-
-    <div id="loginErrors"></div>
-
+    
     <form id="loginForm" method="POST">
         @csrf
 
         <div>
-            <label for="username">Nombre de usuario</label>
-            <input id="username" type="text" name="username" value="{{ old('username') }}" required>
+            <input id="email" type="email" name="email" value="{{ old('username') }}" required>
+            <label for="email">Email</label>
         </div>
-
+        
         <div>
-            <label for="password">Password</label>
             <input id="password" type="password" name="password" required>
+            <label for="password">Password</label>
         </div>
-
+        
         <button type="submit">Entrar</button>
     </form>
+    
+    <div id="loginErrors"></div>
+    
+    @vite('resources/js/auth/login.js')
 @endsection

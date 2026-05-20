@@ -14,12 +14,12 @@
 <body>
 
   <header>
-    <h1>GESTOR DELS MEUS PROJECTES</h1>
+    <h1>EXAMEN API LARAVEL</h1>
     <p>{{auth()->user()->name}}</p>
   </header>
 
   <a href="{{ route("projects.create") }}">Nuevo proyecto</a>
-  <a href="{{ route("owners") }}">Content Owners</a>
+  {{-- <a href="{{ route("owners") }}">Content Owners</a> --}}
   <form action="{{ route('logout') }}" method="POST">
       @csrf
       <button type="submit">Logout</button>

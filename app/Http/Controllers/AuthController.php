@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function login(Request $request): JsonResponse
     {
         $credentials = $request->validate([
-            "username" => "required|string",
+            "email" => "required|email",
             "password" => "required|string",
         ]);
         $response = null;
@@ -44,7 +44,8 @@ class AuthController extends Controller
         $validate = $request->validate([
             "name" => "required|string|max:255",
             "email" => "required|email|max:255|unique:users,email",
-            "password" => "required|string|min:3|confirmed",
+            "password" => "required|string|min:4",
+            "departamento" => "required|string"
         ]);
         $user = User::create($validate);
         $response = null;
@@ -53,7 +54,7 @@ class AuthController extends Controller
             Auth::login($user);
             $request->session()->regenerate();
 
-            $response = response()->json(["message" => "Registro correcto.", "redirect" => route("cars.index"),], 201);
+            $response = response()->json(["message" => "Registro correcto.", "redirect" => route("dashboard"),], 201);
         } else {
             $response = response()->json(["message" => "No se ha podido registrar el usuario."], 500);
         }

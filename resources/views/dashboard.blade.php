@@ -18,7 +18,7 @@
   </header>
 
   <a href="{{ route("projects.create") }}">Nuevo proyecto</a>
-  <a href="{{ route("app") }}">Content APP</a>
+  <a href="{{ route("owners") }}">Content Owners</a>
   <form action="{{ route('logout') }}" method="POST">
       @csrf
       <button type="submit">Logout</button>

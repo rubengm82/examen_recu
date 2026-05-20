@@ -16,7 +16,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::view("/", "dashboard")->name("dashboard");
-    Route::view("/app", "app")->name("app");
+    Route::view("/owners", "owner.index")->name("owners");
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     // Route::resource('cars', CarsController::class);
     // Route::resource('owners', OwnersController::class);

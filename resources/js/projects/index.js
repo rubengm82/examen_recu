@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (deleteData.message === "Coche eliminado correctamente") {
                         button.parentElement.remove();
                     }
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.log("Error al eliminar el proyecto");

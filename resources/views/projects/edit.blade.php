@@ -28,7 +28,7 @@
     </form>
     <br>
 
-    <div id="editMessage"></div>
+    <div id="editMessage" style="color:green"></div>
 
 @vite('resources/js/projects/edit.js')
 </body>

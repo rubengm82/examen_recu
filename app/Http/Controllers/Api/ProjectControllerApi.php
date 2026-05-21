@@ -21,8 +21,6 @@ class ProjectControllerApi extends Controller
         // Log::info($projects2);
         // Log::info($projects2->toArray());
 
-        $response = null;
-
         if ($projects->isEmpty()) {
             $response = response()->json(["message" => "No hay aún items", "projects" => null], 404);
         } else {
@@ -37,7 +35,6 @@ class ProjectControllerApi extends Controller
      */
     public function store(Request $request)
     {
-        // Validacion basica de lo que se recibe
         $validate = $request->validate([
             "nombre" => "required|string",
             "descripcion" => "required|string",
@@ -45,7 +42,7 @@ class ProjectControllerApi extends Controller
             "fecha_fin" => "required|date",
         ]);
         $validate["user_id"] = auth()->user()->id;
-        
+
         Project::create($validate);
         return response()->json(["message" => "Creado correctamente"], 200);
     }
@@ -57,8 +54,6 @@ class ProjectControllerApi extends Controller
     {
         // $project = Project::with("tasks")->find($id);
         $project = Project::where("user_id", auth()->user()->id)->with("tasks")->find($id);
-
-        $response = null;
 
         if (!$project) {
             $response = response()->json(["message" => "No encontrado", "project" => null], 404);
@@ -76,7 +71,6 @@ class ProjectControllerApi extends Controller
     {
         // $project = Project::find($id);
         $project = Project::where("user_id", auth()->user()->id)->find($id);
-        $response = null;
 
         if (!$project) {
             $response = response()->json(["message" => "No encontrado"], 404);
@@ -102,7 +96,6 @@ class ProjectControllerApi extends Controller
     {
         // $project = Project::find($id);
         $project = Project::where("user_id", auth()->user()->id)->find($id);
-        $response = null;
 
         if (!$project) {
             $response = response()->json(["message" => "No encontrado"], 404);

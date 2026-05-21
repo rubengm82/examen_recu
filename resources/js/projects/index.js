@@ -22,24 +22,33 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p class='project-name' data-id='${project.id}'>${project.nombre}</p>
                     <a href="/projects/${project.id}/edit">Editar</a>
                     <button class="delete-project-button" data-id="${project.id}">Eliminar</button>
-
                 </div>
                 `;
             });
             // Para poner el primero proyecto en el centros
             let article = document.querySelector(".featured");
             let firstProject = data.projects[0];
-            article.innerHTML = `${firstProject.nombre}: ${firstProject.descripcion}`
+            article.innerHTML = `
+                Nombre: ${firstProject.nombre}<br>
+                Descripción: ${firstProject.descripcion}<br>
+                Fecha incio: ${firstProject.fecha_inicio}<br>
+                Fecha fin: ${firstProject.fecha_fin}<br>
+            `
 
             // Para poder mostrar las tasks del primer proyecto en su sitio
             let contentTasksFirst = ""
             const tasksContainerFirst = document.querySelector(".news");
             if (firstProject.tasks.length > 0) {
                 firstProject.tasks.forEach(projectTask => {
-                    contentTasksFirst += `<article class="card">${projectTask.descripcion}</article>`
+                    contentTasksFirst += `
+                        <article class="card">
+                            Descripción: ${projectTask.descripcion}<br>
+                            Completada: ${projectTask.completada ? 'SI' : 'NO'}
+                        </article>
+                    `
                 });
             } else{
-                contentTasksFirst += "<article class='card'>Este proyecto no tiene tareas</article>"
+                contentTasksFirst += "<article class='card'>No hay tareas</article>"
             }
             tasksContainerFirst.innerHTML = contentTasksFirst;
 
@@ -78,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Se usa para obtener los datos del proyecto al que se hace click
-
         const projectClickables = document.querySelectorAll(".project-name");
         projectClickables.forEach(projectClickable => {
             projectClickable.addEventListener("click", () => {
@@ -94,9 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.project) {
-                        // Se pone el texto en el centro y se modifican las tasks
                         let atricleElement = document.querySelector(".featured");
-                        atricleElement.innerHTML = `${data.project.nombre}: ${data.project.descripcion}`
+                        atricleElement.innerHTML = `
+                            Nombre: ${data.project.nombre}<br>
+                            Descripción: ${data.project.descripcion}<br>
+                            Fecha incio: ${data.project.fecha_inicio}<br>
+                            Fecha fin: ${data.project.fecha_fin}<br>
+                        `
 
                         // Se ponen las tasks en la pagina
                         const projectTasks = data.project.tasks;
@@ -107,12 +119,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         let contentTasks = "";
                         if (projectTasks.length > 0) {
                             projectTasks.forEach(projectTask => {
-                                contentTasks += `<article class="card">${projectTask.descripcion}</article>`
+                                contentTasks += `
+                                    <article class="card">
+                                        Descripción: ${projectTask.descripcion}<br>
+                                        Completada: ${projectTask.completada ? 'SI' : 'NO'}
+                                    </article>
+                                `
                             });
                             console.log("Entra dentro del condicional")
                         } else{
                             console.log("Entra fuera del condicional")
-                            contentTasks += "<article class='card'>Este proyecto no tiene tareas</article>"
+                            contentTasks += "<article class='card'>No hay tareas</article>"
                         }
                         tasksContainer.innerHTML = contentTasks;
                     }

@@ -28,6 +28,7 @@
             <label for="password">Password</label>
         </div>
 
+        <br>
         <button type="submit">Registrarme</button>
     </form>
 

@@ -14,19 +14,49 @@ class TaskSeeder extends Seeder
     {
         $tasks = [
             [
-                'descripcion' => 'Descripcion tarefa 1',
+                'descripcion' => 'Tarea 1',
                 'completada' => false,
                 'project_id' => 1,
             ],
             [
-                'descripcion' => 'Descripcion tarefa 2',
+                'descripcion' => 'Tarea 2',
                 'completada' => true,
                 'project_id' => 1,
             ],
             [
-                'descripcion' => 'Descripcion tarefa 3',
+                'descripcion' => 'Tarea 3',
                 'completada' => false,
                 'project_id' => 1,
+            ],
+            [
+                'descripcion' => 'Tarea 4',
+                'completada' => false,
+                'project_id' => 1,
+            ],
+            [
+                'descripcion' => 'Tarea 1',
+                'completada' => false,
+                'project_id' => 2,
+            ],
+            [
+                'descripcion' => 'Tarea 2',
+                'completada' => true,
+                'project_id' => 2,
+            ],
+            [
+                'descripcion' => 'Tarea 3',
+                'completada' => true,
+                'project_id' => 2,
+            ],
+            [
+                'descripcion' => 'Tarea 1',
+                'completada' => false,
+                'project_id' => 3,
+            ],
+            [
+                'descripcion' => 'Tarea 2',
+                'completada' => true,
+                'project_id' => 3,
             ],
         ];
 

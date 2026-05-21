@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
         messageContent.innerHTML = "";
         const formData = new FormData(form);
 
-        // Peticion para crear el projecto
         fetch("/api/projects", {
             method: "POST",
             headers: {

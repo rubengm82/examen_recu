@@ -11,20 +11,23 @@
     @vite("resources/css/app.css")
 </head>
 <body>
+    <a href="{{ route("dashboard") }}" class="link_volver">Volver</a>
+    <br><br>
 
-<div id="createProjectMessage"></div>
+    <h1>Crear proyecto</h1>
 
-<form id="createProjectForm" class="form" method="POST">
-    @csrf
-    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-    <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion">
-    <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha inicio">
-    <input type="date" name="fecha_fin" id="fecha_fin" placeholder="Fecha fin">
+    <form id="createProjectForm" class="form" method="POST">
+        @csrf
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre"> Nombre<br>
+        <input type="text" name="descripcion" id="descripcion" placeholder="Descripción"> Descripción<br>
+        <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha inicio"> Fecha inicio<br>
+        <input type="date" name="fecha_fin" id="fecha_fin" placeholder="Fecha fin"> Fecha fin<br><br>
 
-    <button type="submit">Crear proyecto</button>
-</form>
+        <button type="submit">Aceptar</button>
+    </form>
+    <br>
 
-<div id="createProjectMessage"></div>
+    <div id="createProjectMessage"></div>
 
 </body>
 </html>

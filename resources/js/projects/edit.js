@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(response => response.json())
     .then(data => {
-        // Se rellena el contenido de los inputs con los datos del proyecto que se intenta editar
+        // Se rellena el contenido de los inputs con los datos de data
         if (data.project) {
             document.getElementById("nombre").value = data.project.nombre;
             document.getElementById("descripcion").value = data.project.descripcion;

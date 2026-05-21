@@ -1,168 +1,67 @@
-/* body{
-    padding: 10px;
-}
-.navbar{
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    justify-content: center;
-}
-
-.navbar a{
-    text-decoration: none;
-}
-
-.form {
-    width: 50%;
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-.cars-index {
-    display: grid;
-    gap: clamp(1rem, 2vw, 1.5rem);
-    padding-block: clamp(1rem, 2vw, 2rem);
-}
-
-.showCars {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1.25rem);
-    align-items: start;
-}
-
-.car-item {
-    display: grid;
-    gap: 0.6rem;
-    padding: clamp(0.9rem, 1.6vw, 1.2rem);
-    border: 1px solid #d5d5d5;
-    border-radius: 0.75rem;
-    background: #f8f8f8;
-}
-
-.car-item p {
-    margin: 0;
-}
-
-.car-item a,
-.car-item button,
-.cars-index__create {
-    display: inline-grid;
-    place-items: center;
-    width: fit-content;
-    padding: 0.55rem 0.9rem;
-    border: 1px solid #c8c8c8;
-    border-radius: 0.5rem;
-    background: #ffffff;
-    text-decoration: none;
-    color: inherit;
-}
-
-.car-item button {
-    cursor: pointer;
-}
- */
-
-
-
-/* ------------------ EXAMEN ------------------*/
-
-
-*{
-    padding: 0px;
-    margin: 0px;
-}
-
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
+    padding: 10px;
 }
 
 header {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    padding: clamp(1rem, 1vw, 10rem);
-    background: #111;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background: #456;
     color: white;
+    margin-bottom: 1rem;
 }
 
-
-.layout{
+.layout {
     display: grid;
-    height: 85vh;
-    background-color: #f7f7f7;
-    /* grid-template-columns: 2fr 5fr 2fr; */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-    grid-template-rows: 1, minmax(100px, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 15px;
 }
+
 .sidebar{
-    margin: 10px;
-    padding: 10px;
-    border-radius: 15px;
-    border: 1px solid #AFAFAF;
-    background-color: white;
+    border: 1px solid #afafaf;
+    background-color:khaki;
+    padding: 8px;
 }
 
-.sidebar h2{
-    padding: clamp(1rem, 1vh, 10rem);
+.sidebar p {
+    cursor: pointer;
+    margin: 0;
+}
+
+.sidebar p:hover {
+    color:brown;
 }
 
 .featured {
     display: grid;
     align-items: center;
     justify-content: center;
-    margin: 10px;
-    padding: clamp(5rem, 1vw, 10rem) clamp(3rem, 1vw, 10rem);
-    border-radius: 15px;
-    border: 1px solid #AFAFAF;
-    background-color: white;
+    border: 1px solid #afafaf;
+    background-color:burlywood;
 }
 
 .news {
     display: grid;
-    /* grid-template-columns: repeat(2, 1fr); */
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-template-rows: repeat(6, minmax(100px, 1fr));
+    gap: 10px
 }
 
 .card {
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 15px;
     border: 1px solid #AFAFAF;
-    background-color: white;
-}
-
-footer {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    padding: clamp(1rem, 1vw, 10rem);
-    background: #111;
-    color: white;
+    background-color: bisque;
+    height: auto;
+    text-align: center;
 }
 
 
+/* *** */
 .project-element{
     display: flex;
     gap: 10px;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.form input, button {
-    width: 20%;
-    padding: 10px;
-    min-width: 200px;
 }

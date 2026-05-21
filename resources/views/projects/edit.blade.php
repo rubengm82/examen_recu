@@ -7,18 +7,17 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>Editar proyecto</title>
-    @vite('resources/js/projects/edit.js')
     @vite("resources/css/app.css")
 </head>
 <body>
     <a href="{{ route('dashboard') }}">Volver</a>
     <br><br>
 
-    <h1>Editar proyecto</h1>
+    <h1>Editar Item</h1>
 
-    <div id="editProjectData" data-id="{{ $id }}"></div>
+    <div id="editData" data-id="{{ $id }}"></div>
 
-    <form id="editProjectForm" class="form" method="POST">
+    <form id="editForm" class="form" method="POST">
         @csrf
         <input type="text" name="nombre" id="nombre" placeholder="Nombre"> Nombre<br>
         <input type="text" name="descripcion" id="descripcion" placeholder="Descripción"> Descripción<br>
@@ -29,9 +28,9 @@
     </form>
     <br>
 
-    <div id="editProjectMessage"></div>
+    <div id="editMessage"></div>
 
-
+@vite('resources/js/projects/edit.js')
 </body>
 </html>
 

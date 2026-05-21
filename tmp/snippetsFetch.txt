@@ -1,0 +1,109 @@
+// GET ALL
+fetch("/api/projects", {
+    method: "GET",
+    headers: {
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": csrfToken
+    },
+    credentials: "same-origin"
+})
+.then(response => response.json())
+.then(data => {
+})
+.catch(error => {
+    console.log("Error al hacer la peticion");
+    console.error(error);
+});
+
+
+// GET SHOW
+fetch(`/api/projects/${projectClickable.dataset.id}`, {
+    method: "GET",
+    headers: {
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": csrfToken
+    },
+    credentials: "same-origin"
+})
+.then(response => response.json())
+.then(data => {
+})
+.catch(error => {
+    console.log("Error al mostrar el item");
+    console.error(error);
+});
+
+
+// DELETE
+const projectId = button.dataset.id;
+fetch(`/api/projects/${projectId}`, {
+    method: "DELETE",
+    headers: {
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": csrfToken
+    },
+    credentials: "same-origin"
+})
+.then(response => response.json())
+.then(deleteData => {
+    if (deleteData.message === "Eliminado correctamente") {
+        button.parentElement.remove();
+    }
+    console.log(deleteData.message);
+})
+.catch(error => {
+    console.log("Error al eliminar el item");
+    console.error(error);
+});
+
+
+// UPDATE - EDIT
+ const formData = new FormData(form);
+// Se especifica que el metodo que se envia es PUT
+formData.append("_method", "PUT");
+
+fetch(`/api/projects/${projectId}`, {
+    method: "POST",
+    headers: {
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": csrfToken
+    },
+    credentials: "same-origin",
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    messageContent.innerHTML = `<p>${data.message}</p>`;
+})
+.catch(error => {
+    console.log("Error al editar");
+    console.error(error);
+    messageContent.innerHTML = "<p>Ha ocurrido un error al editar</p>";
+});
+
+
+// CREATE - POST
+const formData = new FormData(form);
+fetch("/api/projects", {
+    method: "POST",
+    headers: {
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": csrfToken
+    },
+    credentials: "same-origin",
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    messageContent.innerHTML = `<p>${data.message}</p>`;
+    if (data.message === "Creado correctamente") {
+        form.reset();
+    }
+})
+.catch(error => {
+    console.log("Error al crear");
+    console.error(error);
+    messageContent.innerHTML = "<p>Ha ocurrido un error al crear</p>";
+})
+
+

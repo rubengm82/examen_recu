@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const projectContent = document.querySelector(".sidebar");
+    const divContent = document.querySelector(".sidebar");
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
     fetch("/api/projects", {
@@ -18,20 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
             content += "<h2>Listado de Items</h2>";
             data.projects.forEach(project => {
                 content += `
-                <div class="project-element">
+                <div class="sidebar-items">
                     <div>
-                        <p class='project-name' data-id='${project.id}'>${project.nombre}</p>
+                        <p class='sidebar-item-name' data-id='${project.id}'>${project.nombre}</p>
                     </div>
                     <div>
                         <a href="/projects/${project.id}/edit">Editar</a>
-                        <button class="delete-project-button" data-id="${project.id}">Eliminar</button>
+                        <button class="delete-item-button" data-id="${project.id}">Eliminar</button>
                     </div>
                 </div>
                 `;
             });
-            // Para poner el primero proyecto en el centro
+
+            // PONER PRIMER PROYECTO EN EL CENTRO
             let article = document.querySelector(".featured");
             let firstProject = data.projects[0];
+            // console.log(firstProject);
+            
             article.innerHTML = `
                 Nombre: ${firstProject.nombre}<br>
                 Descripción: ${firstProject.descripcion}<br>
@@ -56,23 +59,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             tasksContainerFirst.innerHTML = contentTasksFirst;
 
-
         }
-        projectContent.innerHTML = content;
+        divContent.innerHTML = content;
 
 
         // ////////////////////////////////////
         // CLICK EN BOTON BORRAR DE SIDEBAR //
         // ///////////////////////////////////
         // Eliminar el proyecto
-        const deleteButtons = document.querySelectorAll(".delete-project-button");
+        const deleteButtons = document.querySelectorAll(".delete-item-button");
 
         // Event listener del click de los botones de eliminar proyectos
         deleteButtons.forEach(button => {
             button.addEventListener("click", () => {
-                const projectId = button.dataset.id;
+                const itemId = button.dataset.id;
 
-                fetch(`/api/projects/${projectId}`, {
+                fetch(`/api/projects/${itemId}`, {
                     method: "DELETE",
                     headers: {
                         "Accept": "application/json",
@@ -83,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(response => response.json())
                 .then(deleteData => {
                     if (deleteData.message === "Eliminado correctamente") {
-                        button.parentElement.remove();
+                        button.parentElement.parentElement.remove();
                     }
                     console.log(deleteData.message);
                 })
@@ -98,11 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // CLICK EN LINK PROYECTOS DE SIDEBAR //
         // /////////////////////////////////////
         // Se usa para obtener los datos del proyecto al que se hace click
-        const projectClickables = document.querySelectorAll(".project-name");
-        projectClickables.forEach(projectClickable => {
-            projectClickable.addEventListener("click", () => {
+        const sidebarItemsClickables = document.querySelectorAll(".sidebar-item-name");
+        sidebarItemsClickables.forEach(itemClickable => {
+            itemClickable.addEventListener("click", () => {
                 // peticion
-                fetch(`/api/projects/${projectClickable.dataset.id}`, {
+                fetch(`/api/projects/${itemClickable.dataset.id}`, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",
@@ -146,15 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 })
                 .catch(error => {
-                    console.log("Error al mostrar el proyecto");
+                    console.log("Error al mostrar el item");
                     console.error(error);
                 });
-                // console.log(projectClickable.dataset.id);
+                // console.log(itemClickable.dataset.id);
             })
         });
-
-
-
     })
     .catch(error => {
         console.log("Error al hacer la peticion");

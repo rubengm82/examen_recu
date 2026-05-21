@@ -61,7 +61,7 @@ header {
 
 
 /* *** */
-.project-element{
+.sidebar-items{
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const editProjectData = document.getElementById("editProjectData");
-    const form = document.getElementById("editProjectForm");
-    const messageContent = document.getElementById("editProjectMessage");
-    const projectId = editProjectData.dataset.id;
+    const editData = document.getElementById("editData");
+    const form = document.getElementById("editForm");
+    const messageContent = document.getElementById("editMessage");
+    const itemId = editData.dataset.id;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(`/api/projects/${projectId}`, {
+    fetch(`/api/projects/${itemId}`, {
         method: "GET",
         headers: {
             "Accept": "application/json"
@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("fecha_inicio").value = data.project.fecha_inicio;
             document.getElementById("fecha_fin").value = data.project.fecha_fin;
         } else {
-            editProjectData.innerHTML = `<p>${data.message}</p>`;
+            editData.innerHTML = `<p>${data.message}</p>`;
         }
     })
     .catch(error => {
-        console.log("Error al cargar el proyecto");
+        console.log("Error al cargar el item");
         console.error(error);
     });
 
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Se especifica que el metodo que se envia es PUT
         formData.append("_method", "PUT");
 
-        fetch(`/api/projects/${projectId}`, {
+        fetch(`/api/projects/${itemId}`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",

@@ -14,35 +14,35 @@ class ProjectSeeder extends Seeder
     {
         $projects = [
             [
-                'nombre' => 'Projecte 1',
+                'nombre' => 'Proyecto 1',
                 'descripcion' => 'Es un proyecto bonito 01',
                 'fecha_inicio' => now()->subDays(30),
                 'fecha_fin' => now()->subDays(10),
                 'user_id' => 1,
             ],
             [
-                'nombre' => 'Projecte 2',
+                'nombre' => 'Proyecto 2',
                 'descripcion' => 'Es un proyecto bonito 02',
                 'fecha_inicio' => now()->subDays(24),
                 'fecha_fin' => now()->subDays(8),
                 'user_id' => 1,
             ],
             [
-                'nombre' => 'Projecte 3',
+                'nombre' => 'Proyecto 3',
                 'descripcion' => 'Es un proyecto bonito 03',
                 'fecha_inicio' => now()->subDays(18),
                 'fecha_fin' => now()->subDays(6),
                 'user_id' => 1,
             ],
             [
-                'nombre' => 'Projecte 4',
+                'nombre' => 'Proyecto 4',
                 'descripcion' => 'Es un proyecto bonito 04',
                 'fecha_inicio' => now()->subDays(12),
                 'fecha_fin' => now()->subDays(3),
                 'user_id' => 1,
             ],
             [
-                'nombre' => 'Projecte 5',
+                'nombre' => 'Proyecto 5',
                 'descripcion' => 'Es un proyecto bonito 05',
                 'fecha_inicio' => now()->subDays(6),
                 'fecha_fin' => now(),

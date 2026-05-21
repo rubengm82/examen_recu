@@ -7,16 +7,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>Crear proyecto</title>
-    @vite('resources/js/projects/create.js')
     @vite("resources/css/app.css")
 </head>
 <body>
     <a href="{{ route("dashboard") }}" class="link_volver">Volver</a>
     <br><br>
 
-    <h1>Crear proyecto</h1>
+    <h1>Crear Item</h1>
 
-    <form id="createProjectForm" class="form" method="POST">
+    <form id="createForm" class="form" method="POST">
         @csrf
         <input type="text" name="nombre" id="nombre" placeholder="Nombre"> Nombre<br>
         <input type="text" name="descripcion" id="descripcion" placeholder="Descripción"> Descripción<br>
@@ -27,7 +26,8 @@
     </form>
     <br>
 
-    <div id="createProjectMessage" style="color:green"></div>
+    <div id="createMessage" style="color:green"></div>
 
+@vite('resources/js/projects/create.js')
 </body>
 </html>

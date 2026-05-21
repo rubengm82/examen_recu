@@ -8,7 +8,6 @@
   
   <title>Examen Laravel API</title>
   @vite("resources/css/app.css")
-  @vite("resources/js/projects/index.js")
 </head>
 
 <body>
@@ -16,7 +15,7 @@
   <header>
     <div>
       <h1>Examen Laravel API</h1>
-      <p>Usuario: <strong>{{auth()->user()->name}}</strong></p>
+      <p>Usuario: <strong>{{auth()->user()->name}} | ({{auth()->user()->departamento}})</strong></p>
     </div>
     <div>
       <form action="{{ route('logout') }}" method="POST">
@@ -26,7 +25,7 @@
     </div>
   </header>
 
-  <a href="{{ route("projects.create") }}">Nuevo proyecto</a>
+  <a href="{{ route("projects.create") }}">Nuevo Item</a>
   {{-- <a href="{{ route("owners") }}">Content Owners</a> --}}
  
   <main class="layout">
@@ -34,7 +33,6 @@
     <aside class="sidebar">
       {{-- <h2>Llistat de Items</h2>
       <p>Projecte 1</p>--}}
-      <a href="{{ route("projects.create") }}">Nuevo proyecto</a>
     </aside>
 
     <article class="featured">
@@ -48,5 +46,6 @@
 
   </main>
 
+@vite("resources/js/projects/index.js")
 </body>
 </html>

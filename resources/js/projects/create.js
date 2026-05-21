@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Se conecta al create de projects")
-    let form = document.getElementById("createProjectForm");
+    // console.log("Se conecta al create");
+    let form = document.getElementById("createForm");
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const messageContent = document.getElementById("createProjectMessage");
+    const messageContent = document.getElementById("createMessage");
     
 
     // ///////////////////////////////////

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   
-  <title>DAW</title>
+  <title>Examen Laravel API</title>
   @vite("resources/css/app.css")
   @vite("resources/js/projects/index.js")
 </head>
@@ -15,8 +15,8 @@
 
   <header>
     <div>
-      <h1>EXAMEN API LARAVEL</h1>
-      <p>{{auth()->user()->name}}</p>
+      <h1>Examen Laravel API</h1>
+      <p>Usuario: <strong>{{auth()->user()->name}}</strong></p>
     </div>
     <div>
       <form action="{{ route('logout') }}" method="POST">
@@ -32,8 +32,9 @@
   <main class="layout">
 
     <aside class="sidebar">
-      {{-- <h2>Llistat del meus projectes</h2>
+      {{-- <h2>Llistat de Items</h2>
       <p>Projecte 1</p>--}}
+      <a href="{{ route("projects.create") }}">Nuevo proyecto</a>
     </aside>
 
     <article class="featured">

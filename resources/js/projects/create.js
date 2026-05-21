@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const messageContent = document.getElementById("createProjectMessage");
     
+
+    // ///////////////////////////////////
+    // CLICK EN BOTON ACEPTAR DE CREAR //
+    // //////////////////////////////////
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         messageContent.innerHTML = "";
@@ -26,9 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(error => {
-            console.log("Error al crear el coche");
+            console.log("Error al crear");
             console.error(error);
-            messageContent.innerHTML = "<p>Ha ocurrido un error al crear el coche</p>";
+            messageContent.innerHTML = "<p>Ha ocurrido un error al crear</p>";
         })
     })
+
 });

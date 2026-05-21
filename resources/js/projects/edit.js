@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(error);
     });
 
-    // Para cuando se envia el formulario de edicion de un proyecto
+    // ////////////////////////////////////
+    // CLICK EN BOTON ACEPTAR DE EDITAR //
+    // ///////////////////////////////////
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         messageContent.innerHTML = "";
@@ -52,9 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
             messageContent.innerHTML = `<p>${data.message}</p>`;
         })
         .catch(error => {
-            console.log("Error al editar el proyecto");
+            console.log("Error al editar");
             console.error(error);
-            messageContent.innerHTML = "<p>Ha ocurrido un error al editar el proyecto</p>";
+            messageContent.innerHTML = "<p>Ha ocurrido un error al editar</p>";
         });
     });
+
 });

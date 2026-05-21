@@ -27,7 +27,7 @@
     </form>
     <br>
 
-    <div id="createProjectMessage"></div>
+    <div id="createProjectMessage" style="color:green"></div>
 
 </body>
 </html>

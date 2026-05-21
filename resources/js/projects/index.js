@@ -15,17 +15,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.projects == null) {
             content = `<p>${data.message}</p>`;
         } else {
-            content += "<h2>Llistat del meus projectes</h2>"
+            content += "<h2>Listado de Items</h2>";
             data.projects.forEach(project => {
                 content += `
                 <div class="project-element">
-                    <p class='project-name' data-id='${project.id}'>${project.nombre}</p>
-                    <a href="/projects/${project.id}/edit">Editar</a>
-                    <button class="delete-project-button" data-id="${project.id}">Eliminar</button>
+                    <div>
+                        <p class='project-name' data-id='${project.id}'>${project.nombre}</p>
+                    </div>
+                    <div>
+                        <a href="/projects/${project.id}/edit">Editar</a>
+                        <button class="delete-project-button" data-id="${project.id}">Eliminar</button>
+                    </div>
                 </div>
                 `;
             });
-            // Para poner el primero proyecto en el centros
+            // Para poner el primero proyecto en el centro
             let article = document.querySelector(".featured");
             let firstProject = data.projects[0];
             article.innerHTML = `
@@ -56,6 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         projectContent.innerHTML = content;
 
+
+        // ////////////////////////////////////
+        // CLICK EN BOTON BORRAR DE SIDEBAR //
+        // ///////////////////////////////////
         // Eliminar el proyecto
         const deleteButtons = document.querySelectorAll(".delete-project-button");
 
@@ -86,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        // /////////////////////////////////////
+        // CLICK EN LINK PROYECTOS DE SIDEBAR //
+        // /////////////////////////////////////
         // Se usa para obtener los datos del proyecto al que se hace click
         const projectClickables = document.querySelectorAll(".project-name");
         projectClickables.forEach(projectClickable => {
@@ -126,9 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                     </article>
                                 `
                             });
-                            console.log("Entra dentro del condicional")
+                            // console.log("Entra dentro del condicional")
                         } else{
-                            console.log("Entra fuera del condicional")
+                            // console.log("Entra fuera del condicional")
                             contentTasks += "<article class='card'>No hay tareas</article>"
                         }
                         tasksContainer.innerHTML = contentTasks;
@@ -138,8 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log("Error al mostrar el proyecto");
                     console.error(error);
                 });
-
-                console.log(projectClickable.dataset.id);
+                // console.log(projectClickable.dataset.id);
             })
         });
 
@@ -150,4 +160,5 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Error al hacer la peticion");
         console.error(error);
     })
+
 });

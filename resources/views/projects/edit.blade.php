@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>Crear proyecto</title>
+    <title>Editar proyecto</title>
     @vite('resources/js/projects/edit.js')
     @vite("resources/css/app.css")
 </head>

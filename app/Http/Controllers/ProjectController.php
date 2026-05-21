@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProjectsController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class ProjectsController extends Controller
      */
     public function show(string $id)
     {
-        return view("projects.show", compact("id"));
+        // return view("projects.show", compact("id"));
     }
 
     /**

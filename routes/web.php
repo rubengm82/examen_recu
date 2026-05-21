@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\OwnersController;
-use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,7 +17,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::view("/", "dashboard")->name("dashboard");
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::resource('projects', ProjectsController::class);
+    Route::resource('projects', ProjectController::class);
     // Route::view("/owners", "owner.index")->name("owners");
     // Route::resource('cars', CarsController::class);
     // Route::resource('owners', OwnersController::class);

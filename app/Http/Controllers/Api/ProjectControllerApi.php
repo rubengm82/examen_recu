@@ -7,7 +7,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ProjectController extends Controller
+class ProjectControllerApi extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -45,6 +45,7 @@ class ProjectController extends Controller
             "fecha_fin" => "required|date",
         ]);
         $validate["user_id"] = auth()->user()->id;
+        
         Project::create($validate);
         return response()->json(["message" => "Creado correctamente"], 200);
     }
@@ -54,7 +55,8 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        $project = Project::with("tasks")->find($id);
+        // $project = Project::with("tasks")->find($id);
+        $project = Project::where("user_id", auth()->user()->id)->with("tasks")->find($id);
 
         $response = null;
 
@@ -72,7 +74,8 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $project = Project::find($id);
+        // $project = Project::find($id);
+        $project = Project::where("user_id", auth()->user()->id)->find($id);
         $response = null;
 
         if (!$project) {
@@ -97,7 +100,8 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        $project = Project::find($id);
+        // $project = Project::find($id);
+        $project = Project::where("user_id", auth()->user()->id)->find($id);
         $response = null;
 
         if (!$project) {

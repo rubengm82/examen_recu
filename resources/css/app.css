@@ -46,7 +46,9 @@ header {
 .news {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px
+    gap: 10px;
+    background: #CCC;
+    border: 1px solid #afafaf;
 }
 
 .card {

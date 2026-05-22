@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let bikes = data.bikes;
         let div_sidebar = document.querySelectorAll('.sidebar')[0];
         let div_featured = document.querySelectorAll('.featured')[0];
+        let div_news = document.querySelectorAll('.news')[0];
 
         div_sidebar.innerHTML += `<h2>Llistat de Bikes</h2>`
         
@@ -46,6 +47,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 Modelo: ${bikeLast.modelo}<br>
                 Año: ${bikeLast.anyo}<br>
             `;
+
+            let partsLast = bikeLast.parts;
+            partsLast.forEach(partLast => {
+                let div_card = document.createElement('div');
+                div_card.classList.add('card');
+                div_card.innerHTML = `${partLast.nombre}`;
+
+                // LISTA MOTOS QUE LLEVAN ESA PIEZA
+                div_card.innerHTML += `<br><br>Usada en:<br>`;
+                if (partLast.bikes && partLast.bikes.length > 0) {
+                    partLast.bikes.forEach(bike => {
+                        div_card.innerHTML += `· ${bike.marca} ${bike.modelo}<br>`;
+                    });
+                } else {
+                    div_card.innerHTML += `Ninguna bike<br>`;
+                }
+                
+                div_news.appendChild(div_card);
+            });
+            
+             // Si no hay piezas te lo pone en un div
+            if(bikeLast.parts.length == 0) {
+                let div_card = document.createElement('div');
+                div_card.classList.add('card');
+                div_card.style.backgroundColor = '#d95959';
+                div_card.innerHTML = `No hay piezas`;
+                div_news.appendChild(div_card);
+            }
         }
         
         // CLICK <P> SIDEBAR ITEMS
@@ -76,6 +105,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         Modelo: ${bike.modelo}<br>
                         Año: ${bike.anyo}<br>
                     `;
+
+                    let parts = bike.parts;
+                    div_news.innerHTML = '';
+                    parts.forEach(part => {
+                        let div_card = document.createElement('div');
+                        div_card.classList.add('card');
+                        div_card.innerHTML = `${part.nombre}`;
+
+                        // LISTA MOTOS QUE LLEVAN ESA PIEZA
+                        div_card.innerHTML += `<br><br>Usada en:<br>`;
+                        if (part.bikes && part.bikes.length > 0) {
+                            part.bikes.forEach(bike => {
+                                div_card.innerHTML += `· ${bike.marca} ${bike.modelo}<br>`;
+                            });
+                        } else {
+                            div_card.innerHTML += `Ninguna bike<br>`;
+                        }
+
+                        div_news.appendChild(div_card);
+                    });       
+                    
+                    // Si no hay piezas te lo pone en un div
+                    if(parts.length == 0) {
+                        let div_card = document.createElement('div');
+                        div_card.classList.add('card');
+                        div_card.style.backgroundColor = '#d95959';
+                        div_card.innerHTML = `No hay piezas`;
+                        div_news.appendChild(div_card);
+                    }  
                 })
                 .catch(error => {
                     console.log("Error al mostrar el item");

@@ -12,7 +12,7 @@ class BikeControllerApi extends Controller
      */
     public function index()
     {
-        $bikes = Bike::where("user_id", auth()->user()->id)->get();
+        $bikes = Bike::where("user_id", auth()->user()->id)->with('parts.bikes')->get();
         // $bikes = auth()->user()->bikes()->get();
     
         if ($bikes->isEmpty()) {
@@ -44,10 +44,10 @@ class BikeControllerApi extends Controller
      */
     public function show(string $id)
     {
-        $bike = Bike::where("user_id", auth()->user()->id)->find($id);
+        $bike = Bike::where("user_id", auth()->user()->id)->with('parts.bikes')->find($id);
 
         if (!$bike) {
-            $response = response()->json(["message" => "No encontrado", "bike" => null], 404);
+            $response = response()->json(["message" => "No encontrado", "bike" => null], 200);
         } else {
             $response = response()->json(["message" => "Encontrado", "bike" => $bike], 200);
         }

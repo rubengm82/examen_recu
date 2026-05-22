@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             TaskSeeder::class,
             BikeSeeder::class,
+            PartSeeder::class,
+            BikePartSeeder::class,
         ]);
     }
 }

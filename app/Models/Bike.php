@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Override;
 
 class Bike extends Model
 {
@@ -17,4 +18,10 @@ class Bike extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function parts()
+    {
+        return $this->belongsToMany(Part::class, 'bike_part');
+    }
+
 }

@@ -25,7 +25,7 @@
     </div>
   </header>
 
-  <a href="{{ route("projects.create") }}">Nuevo Item</a>
+  <a href="{{ route("bikes.create") }}">Nuevo Item</a>
   {{-- <a href="{{ route("owners") }}">Content Owners</a> --}}
  
   <main class="layout">
@@ -39,13 +39,13 @@
       {{-- Projecte 1: És el projecte més nou  --}}
     </article>
 
-    <section class="news">
+    {{-- <section class="news"> --}}
       {{-- <article class="card">Tasca 1 del projecte seleccionat </article>
       <article class="card">Tasca 2 del projecte seleccionat</article>--}}
-    </section>
+    {{-- </section> --}}
 
   </main>
 
-@vite("resources/js/projects/index.js")
+@vite("resources/js/bikes/index.js")
 </body>
 </html>

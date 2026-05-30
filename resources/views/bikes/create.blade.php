@@ -10,17 +10,22 @@
     @vite("resources/css/app.css")
 </head>
 <body>
-    <a href="{{ route('dashboard') }}">Volver</a>
+    <a href="{{ route("dashboard") }}" class="link_volver">Volver</a>
     <br><br>
 
     <h1>Crear Bike</h1>
 
     <form id="createForm" class="form" method="POST">
         @csrf
-        <input type="text" name="marca" id="marca" placeholder="Marca" required> Marca<br>
-        <input type="text" name="modelo" id="modelo" placeholder="Modelo" required> Modelo<br>
-        <input type="text" name="anyo" id="anyo" placeholder="Año" required> Año<br><br>
-
+        <input type="text" name="marca" id="marca" placeholder="marca" required> marca<br>
+        <input type="text" name="modelo" id="modelo" placeholder="modelo" required> modelo<br>
+        <input type="text" name="cilindrada" id="cilindrada" placeholder="cilindrada" required> cilindrada<br>
+        <select name="gasolina" id="gasolina" required>
+            <option value="">Gasolina</option>
+            <option value="1">SI</option>
+            <option value="0">NO</option>
+        </select>
+        <br><br>
         <button type="submit">Aceptar</button>
     </form>
     <br>

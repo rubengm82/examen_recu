@@ -39,10 +39,10 @@
       {{-- Projecte 1: És el projecte més nou  --}}
     </article>
 
-    {{-- <section class="news"> --}}
-      {{-- <article class="card">Tasca 1 del projecte seleccionat </article>
-      <article class="card">Tasca 2 del projecte seleccionat</article>--}}
-    {{-- </section> --}}
+    <section class="news">
+      {{-- <article class="card">Tasca 1 del projecte seleccionat </article> --}}
+      {{-- <article class="card">Tasca 2 del projecte seleccionat</article> --}}
+    </section>
 
   </main>
 

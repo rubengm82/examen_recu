@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let form = document.getElementById('createForm');
-    let messageContent = document.getElementById('createMessage');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const form = document.getElementById('createForm');
+    const messageContent = document.getElementById('createMessage');
     
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-
-        const formData = new FormData(form);
-
+        
+        let formData = new FormData(form);
         fetch("/api/bikes", {
             method: "POST",
             headers: {
@@ -29,6 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
             messageContent.innerHTML = "<p>Ha ocurrido un error al crear</p>";
         })
-        
     });
+
 });

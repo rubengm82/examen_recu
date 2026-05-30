@@ -12,8 +12,7 @@ class BikeControllerApi extends Controller
      */
     public function index()
     {
-        $bikes = Bike::where("user_id", auth()->user()->id)->get();
-        // $bikes = auth()->user()->bikes()->get();
+        $bikes = Bike::where("user_id", auth()->user()->id)->with("piezas")->get();
     
         if ($bikes->isEmpty()) {
             $response = response()->json(["message" => "No hay aún items", "bikes" => null], 200);
@@ -28,13 +27,15 @@ class BikeControllerApi extends Controller
      */
     public function store(Request $request)
     {
+        // Validacion basica de lo que se recibe
         $validate = $request->validate([
             "marca" => "required|string",
             "modelo" => "required|string",
-            "anyo" => "required|integer",
+            "cilindrada" => "required|integer",
+            "gasolina" => "required|boolean",
         ]);
         $validate["user_id"] = auth()->user()->id;
-
+        
         Bike::create($validate);
         return response()->json(["message" => "Creado correctamente"], 200);
     }
@@ -44,10 +45,11 @@ class BikeControllerApi extends Controller
      */
     public function show(string $id)
     {
-        $bike = Bike::where("user_id", auth()->user()->id)->find($id);
+        // $project = Project::with("tasks")->find($id);
+        $bike = Bike::where("user_id", auth()->user()->id)->with("piezas")->find($id);
 
         if (!$bike) {
-            $response = response()->json(["message" => "No encontrado", "bike" => null], 404);
+            $response = response()->json(["message" => "No encontrado", "bike" => null], 200);
         } else {
             $response = response()->json(["message" => "Encontrado", "bike" => $bike], 200);
         }
@@ -60,16 +62,19 @@ class BikeControllerApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // $bike = Bike::find($id);
+        // $project = Project::find($id);
         $bike = Bike::where("user_id", auth()->user()->id)->find($id);
 
+        // marca, modelo, cilindrada, gasolina, user_id
+
         if (!$bike) {
-            $response = response()->json(["message" => "No encontrada"], 404);
+            $response = response()->json(["message" => "No encontrado"], 404);
         } else {
             $validate = $request->validate([
                 "marca" => "required|string",
                 "modelo" => "required|string",
-                "anyo" => "required|integer",
+                "cilindrada" => "required|integer",
+                "gasolina" => "required|boolean",
             ]);
 
             $bike->update($validate);
@@ -84,13 +89,13 @@ class BikeControllerApi extends Controller
      */
     public function destroy(string $id)
     {
-         // $project = Bike::find($id);
-        $bike = Bike::where("user_id", auth()->user()->id)->find($id);
+        // $project = Project::find($id);
+        $project = Bike::where("user_id", auth()->user()->id)->find($id);
 
-        if (!$bike) {
-            $response = response()->json(["message" => "No encontrado"], 404);
+        if (!$project) {
+            $response = response()->json(["message" => "No encontrado"], 200);
         } else {
-            $bike->delete();
+            $project->delete();
             $response = response()->json(["message" => "Eliminado correctamente"], 200);
         }
 

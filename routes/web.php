@@ -18,9 +18,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::view("/", "dashboard")->name("dashboard");
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::resource('projects', ProjectController::class);
-    Route::resource('bikes', BikeController::class);
+    // Route::resource('projects', ProjectController::class);
+    // Route::resource('bikes', BikeController::class);
     // Route::view("/owners", "owner.index")->name("owners");
     // Route::resource('cars', CarsController::class);
     // Route::resource('owners', OwnersController::class);
+    Route::resource('bikes', BikeController::class);
 });

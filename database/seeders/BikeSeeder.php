@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bike;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Bike;
 
 class BikeSeeder extends Seeder
 {
@@ -16,39 +16,43 @@ class BikeSeeder extends Seeder
         $bikes = [
             [
                 'marca' => 'Honda',
-                'modelo' => 'CBR600RR',
-                'anyo' => '2022',
+                'modelo' => 'CBR 600 RR',
+                'cilindrada' => 600,
+                'gasolina' => true,
                 'user_id' => 1,
             ],
             [
                 'marca' => 'Yamaha',
                 'modelo' => 'MT-07',
-                'anyo' => '2021',
+                'cilindrada' => 689,
+                'gasolina' => true,
                 'user_id' => 1,
             ],
             [
                 'marca' => 'Kawasaki',
                 'modelo' => 'Ninja 400',
-                'anyo' => '2023',
-                'user_id' => 1,
+                'cilindrada' => 399,
+                'gasolina' => true,
+                'user_id' => 2,
             ],
             [
                 'marca' => 'Ducati',
                 'modelo' => 'Monster',
-                'anyo' => '2020',
+                'cilindrada' => 937,
+                'gasolina' => true,
                 'user_id' => 2,
             ],
             [
                 'marca' => 'BMW',
-                'modelo' => 'S1000RR',
-                'anyo' => '2024',
-                'user_id' => 2,
+                'modelo' => 'CE 04',
+                'cilindrada' => 0,
+                'gasolina' => false,
+                'user_id' => 1,
             ],
         ];
-
+        
         foreach ($bikes as $bike) {
             Bike::create($bike);
         }
     }
-    
 }

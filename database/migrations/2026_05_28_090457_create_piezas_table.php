@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bikes', function (Blueprint $table) {
+        Schema::create('piezas', function (Blueprint $table) {
             $table->id();
-            $table->string('marca', 255)->nullable();
-            $table->string('modelo', 255)->nullable();
-            $table->integer('anyo')->nullable();
-
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
-
+            $table->string('nombre', 255)->nullable();
+            $table->integer('precio')->nullable();
+            $table->foreignId('bike_id')->nullable()->constrained('bikes')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bikes');
+        Schema::dropIfExists('piezas');
     }
 };

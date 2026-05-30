@@ -20,7 +20,7 @@ class BikeController extends Controller
      */
     public function create()
     {
-        return view("bikes.create");
+        return view('bikes.create');
     }
 
     /**
@@ -34,7 +34,7 @@ class BikeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bike $bike)
+    public function show(string $id)
     {
         //
     }
@@ -44,13 +44,13 @@ class BikeController extends Controller
      */
     public function edit(string $id)
     {
-        return view("bikes.edit", compact("id"));
+        return view('bikes.edit')->with(['id' => $id]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bike $bike)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +58,7 @@ class BikeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bike $bike)
+    public function destroy(string $id)
     {
         //
     }

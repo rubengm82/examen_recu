@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    let div_sidebar = document.querySelector('.sidebar');
+    let div_featured = document.querySelector('.featured');
+    let div_news = document.querySelector('.news');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    
+    div_sidebar.innerHTML = '<h2>Llistat de Items</h2>';
 
     fetch("/api/bikes", {
         method: "GET",
@@ -12,86 +16,95 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => {
-        // console.log(data.bikes);
+        let bikes = data.bikes
+        // console.log(data);
 
-        let bikes = data.bikes;
-        let div_sidebar = document.querySelectorAll('.sidebar')[0];
-        let div_featured = document.querySelectorAll('.featured')[0];
-
-        div_sidebar.innerHTML += `<h2>Llistat de Bikes</h2>`
-        
-        if (bikes == null) {
+        // SIDEBAR DE BIKES
+        bikes.forEach(bike => {
             div_sidebar.innerHTML += `
                 <div>
-                    <p>${data.message}</p>
+                    <p class='sidebar_item' data-id='${bike.id}'>${bike.marca} ${bike.modelo}</p>
+                    <a href='/bikes/${bike.id}/edit' data-id='${bike.id}'>Editar</a> 
+                    <button class='sidebar_eliminar' data-id='${bike.id}'>Eliminar</button> 
                 </div>
-            `;
-        } else {
-            bikes.forEach(bike => {
-                div_sidebar.innerHTML += `
-                    <div>
-                        <p class='sidebar_item_name' data-id='${bike.id}'>${bike.marca} ${bike.modelo}</p>
-                        <a href="/bikes/${bike.id}/edit">Editar</a>
-                        <button class='sidebar_item_delete' data-id='${bike.id}'>Eliminar</button>
-                    </div>
-                `;
-            });
+            `;            
+        });
 
-            // CENTRO CON EL ITEM MAS ANTIGUO
-            let bikeLast = bikes[0];
-            // console.log(bikeLast);
-            
-            div_featured.innerHTML = `
-                Marca: ${bikeLast.marca}<br>
-                Modelo: ${bikeLast.modelo}<br>
-                Año: ${bikeLast.anyo}<br>
-            `;
-        }
+        // ULTIMA BIKE
+        let lastBike = bikes[0];
         
-        // CLICK <P> SIDEBAR ITEMS
-        let sidebar_items_p = document.querySelectorAll('.sidebar_item_name');
-        // console.log(sidebar_items_p);
+        div_featured.innerHTML = `
+        ${lastBike.marca}<br>
+        ${lastBike.modelo}<br>
+        ${lastBike.cilindrada}<br>
+        ${lastBike.gasolina ? 'GASOLINA' : 'NO GASOLINA'}<br>
+        `;
+        
+        lastBike.piezas.forEach(pieza => {
+            div_news.innerHTML += `
+                <article class="card">${pieza.nombre}<br>${pieza.precio}</article>
+            `;
+        });
 
-        sidebar_items_p.forEach(sidebar_item => {
-            sidebar_item.addEventListener('click', (e) => {
-                
-                let bikeId = sidebar_item.dataset.id;
+
+        // SIDEBAR ITEMS CLICKABLES
+        let items_sidebar = document.querySelectorAll('.sidebar_item');
+        // console.log(items_sidebar);
+        
+        items_sidebar.forEach(item_sidebar => {
+            item_sidebar.addEventListener('click', (e) => {
+                let bikeId = item_sidebar.dataset.id;
+                // let bikeId = e.currentTarget.dataset.id;
+                // console.log(bikeId);
 
                 fetch(`/api/bikes/${bikeId}`, {
-                    method: "GET",
-                    headers: {
-                        "Accept": "application/json",
-                        "X-CSRF-TOKEN": csrfToken
+                method: "GET",
+                headers: {
+                    "Accept": "application/json",
+                    "X-CSRF-TOKEN": csrfToken
                     },
                     credentials: "same-origin"
                 })
                 .then(response => response.json())
                 .then(data => {
                     // console.log(data.bike);
-
                     let bike = data.bike;
-                    
-                    div_featured.innerHTML = `
-                        Marca: ${bike.marca}<br>
-                        Modelo: ${bike.modelo}<br>
-                        Año: ${bike.anyo}<br>
+
+                     div_featured.innerHTML = `
+                    ${bike.marca}<br>
+                    ${bike.modelo}<br>
+                    ${bike.cilindrada}<br>
+                    ${bike.gasolina ? 'GASOLINA' : 'NO GASOLINA'}<br>
                     `;
+                    
+                    div_news.innerHTML = '';
+                    if(bike.piezas.length > 0) {
+                        bike.piezas.forEach(pieza => {
+                            div_news.innerHTML += `
+                                <article class="card">${pieza.nombre}<br>${pieza.precio}</article>
+                            `;
+                        });
+                    } else {
+                        div_news.innerHTML = `
+                            <article class="card">NO HAY PIEZAS</article>
+                        `;
+                    }
+                    
                 })
                 .catch(error => {
                     console.log("Error al mostrar el item");
                     console.error(error);
                 });
-                
             });
         });
+        
+        // SIDEBAR DELETE BUTTONS
+        let delete_items_sidebar = document.querySelectorAll('.sidebar_eliminar');
+        
+        delete_items_sidebar.forEach(deleteButton => {
+            deleteButton.addEventListener('click', () => {
+                const bikeId = deleteButton.dataset.id;
 
-        // CLICK <DELETE BUTTONS> SIDEBAR ITEMS
-        let sidebar_items_delete = document.querySelectorAll('.sidebar_item_delete');
-
-        sidebar_items_delete.forEach(buttonDelete => {
-            buttonDelete.addEventListener('click', (e) => {
-                const bikeId = buttonDelete.dataset.id;
-                
                 fetch(`/api/bikes/${bikeId}`, {
                     method: "DELETE",
                     headers: {
@@ -101,24 +114,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     credentials: "same-origin"
                 })
                 .then(response => response.json())
-                .then(data => {
-                    if (data.message === "Eliminado correctamente") {
-                        buttonDelete.parentElement.remove();
+                .then(deleteData => {
+                    if (deleteData.message === "Eliminado correctamente") {
+                        deleteButton.parentElement.remove();
                     }
-                    console.log(data.message);
+                    console.log(deleteData.message);
                 })
                 .catch(error => {
                     console.log("Error al eliminar el item");
                     console.error(error);
                 });
+            });
 
-            })
         });
-
     })
     .catch(error => {
         console.log("Error al hacer la peticion");
         console.error(error);
     });
-
 });

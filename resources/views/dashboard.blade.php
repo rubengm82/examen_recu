@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   
   <title>Examen Laravel API</title>
-  @vite("resources/css/app.css")
+  @vite("resources/css/app2.css")
 </head>
 
 <body>
@@ -25,7 +25,7 @@
     </div>
   </header>
 
-  <a href="{{ route("projects.create") }}">Nuevo Item</a>
+  <a href="{{ route("bikes.create") }}">Nuevo Item</a>
   {{-- <a href="{{ route("owners") }}">Content Owners</a> --}}
  
   <main class="layout">
@@ -46,6 +46,6 @@
 
   </main>
 
-@vite("resources/js/projects/index.js")
+@vite("resources/js/bikes/index.js")
 </body>
 </html>

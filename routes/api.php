@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CarsController;
 use App\Http\Controllers\Api\ProjectControllerApi;
+use App\Http\Controllers\BikeControllerApi;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
@@ -16,5 +17,6 @@ Route::get('/test', function () {
 Route::middleware('auth:web')->group(function () {
     // Route::apiResource('cars', CarsController::class)->names('api.cars');
 
-    Route::apiResource('projects', ProjectControllerApi::class)->names('api.projects');
+    // Route::apiResource('projects', ProjectControllerApi::class)->names('api.projects');
+    Route::apiResource('bikes', BikeControllerApi::class)->names('api.bikes');
 });

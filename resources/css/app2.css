@@ -1,0 +1,17 @@
+.layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.layout > * {
+    border: 1px solid black;
+}
+
+.item-p-sidebar {
+    cursor: pointer;
+}
+
+.item-p-sidebar:hover {
+    color: red;
+}

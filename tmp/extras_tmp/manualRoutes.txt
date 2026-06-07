@@ -1,0 +1,7 @@
+Route::get('/', [BikeController::class, 'index'])->name('index');
+Route::get('/create', [BikeController::class, 'create'])->name('create');
+Route::post('/', [BikeController::class, 'store'])->name('store');
+Route::get('/{bike}', [BikeController::class, 'show'])->name('show');
+Route::get('/{bike}/edit', [BikeController::class, 'edit'])->name('edit');
+Route::put('/{bike}', [BikeController::class, 'update'])->name('update');
+Route::delete('/{bike}', [BikeController::class, 'destroy'])->name('destroy');

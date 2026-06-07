@@ -1,0 +1,63 @@
+$table->string('nombre')	        VARCHAR	<input type="text">	Juan
+$table->integer('edad')	            INT	<input type="number">	25
+$table->boolean('activo')	        BOOLEAN/TINYINT	<input type="checkbox">	1
+$table->date('fecha')	            DATE	<input type="date">	2026-06-06
+$table->time('hora')	            TIME	<input type="time">	14:30
+$table->dateTime('inicio')	        DATETIME	<input type="datetime-local">	2026-06-06T14:30
+$table->timestamp('creado')	        TIMESTAMP	<input type="datetime-local">	2026-06-06T14:30
+$table->text('descripcion')	        TEXT	<textarea>	Texto largo
+$table->float('precio')	            FLOAT	<input type="number" step="0.01">	19.95
+$table->decimal('precio', 8, 2)	    DECIMAL	<input type="number" step="0.01">	19.95
+$table->email('email') 	            VARCHAR	<input type="email">	correo@mail.com
+$table->string('web')	            VARCHAR	<input type="url">	https://ejemplo.com
+$table->string('telefono')	        VARCHAR	<input type="tel">	666123123
+$table->string('password')	        VARCHAR	<input type="password">	********
+
+
+
+// PARA LOS SEEDERS
+// string
+'nombre' => 'Juan',
+
+// integer
+'edad' => 25,
+
+// boolean
+'activo' => true,
+
+// date
+'fecha' => now()->format('Y-m-d'),
+'fecha' => '2026-06-06'
+
+// time
+'hora' => now()->format('H:i:s'),
+'hora' => '14:30:00',
+
+// dateTime
+'inicio' => now(),
+'inicio' => '2026-06-06 14:30:00',
+
+// timestamp
+'creado' => now(),
+'creado' => '2026-06-06 14:30:00',
+
+// text
+'descripcion' => 'Texto largo de ejemplo',
+
+// float
+'precio' => 19.95,
+
+// decimal
+'precio' => 19.95,
+
+// email
+'email' => 'correo@mail.com',
+
+// string (url)
+'web' => 'https://ejemplo.com',
+
+// string (tel)
+'telefono' => '666123123',
+
+// string (password)
+'password' => '********',

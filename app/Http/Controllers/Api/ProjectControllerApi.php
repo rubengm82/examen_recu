@@ -22,7 +22,7 @@ class ProjectControllerApi extends Controller
         // Log::info($projects2->toArray());
 
         if ($projects->isEmpty()) {
-            $response = response()->json(["message" => "No hay aún items", "projects" => null], 404);
+            $response = response()->json(["message" => "No hay aún items", "projects" => null], 200);
         } else {
             $response = response()->json(["message" => "Hay items", "projects" => $projects], 200);
             //$response = response()->json(["message" => "Hay proyectos", "projects" => $projects, "projects2" => $projects2], 200);
@@ -56,7 +56,7 @@ class ProjectControllerApi extends Controller
         $project = Project::where("user_id", auth()->user()->id)->with("tasks")->find($id);
 
         if (!$project) {
-            $response = response()->json(["message" => "No encontrado", "project" => null], 404);
+            $response = response()->json(["message" => "No encontrado", "project" => null], 200);
         } else {
             $response = response()->json(["message" => "Encontrado", "project" => $project], 200);
         }
@@ -73,7 +73,7 @@ class ProjectControllerApi extends Controller
         $project = Project::where("user_id", auth()->user()->id)->find($id);
 
         if (!$project) {
-            $response = response()->json(["message" => "No encontrado"], 404);
+            $response = response()->json(["message" => "No encontrado"], 200);
         } else {
             $validate = $request->validate([
                 "nombre" => "required|string",
@@ -98,7 +98,7 @@ class ProjectControllerApi extends Controller
         $project = Project::where("user_id", auth()->user()->id)->find($id);
 
         if (!$project) {
-            $response = response()->json(["message" => "No encontrado"], 404);
+            $response = response()->json(["message" => "No encontrado"], 200);
         } else {
             $project->delete();
             $response = response()->json(["message" => "Eliminado correctamente"], 200);

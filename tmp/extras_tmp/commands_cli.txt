@@ -1,0 +1,131 @@
+////////////////////////
+/// COMANDOS ARTISAN ///
+////////////////////////
+Crear una Migration:
+    php artisan make:migration create_centers_table
+
+Crear un Modelo:
+    php artisan make:model NombreDelModelo
+
+Crear un Controller:
+    php artisan make:controller NombreController --resource
+
+Crear un Seeder
+    php artisan make:seeder NombreSeeder
+    
+Borrar toda la BBDD y luego hace los migrate de nuevo con seeders:
+    php artisan db:wipe
+    php artisan migrate
+    php artisan db:seed <<-- esto ejecuta todos los seeders en DatabaseSeeder
+
+Unos seeders concretos sin hace todos:
+    php artisan db:seed --class=EvaluationsSeeder
+
+Actualiza migrations y seeders:
+    php artisan migrate:fresh --seed
+
+Dentro de PHPMyAdmin: -> Borrar BBDD de tokens, vale para borrar una tabla cualquiera
+    TRUNCATE TABLE personal_access_tokens;
+
+Listar routes automaticas de web.php
+    php artisan route:list
+    php artisan route:list --path=api
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+
+METODOS DEL LOS CONTROLLER:
+    ·index -> listado centroS
+
+    ·create -> form(VIEW) de centro a crear
+    ·store -> guarda centro creado individual
+
+    ·show -> centro(VIEW) a mostar info individual
+    ·edit -> centro(VIEW) a editar individual
+    ·update -> centro a actualizar individual
+
+    destroy -> centro a destruir individual
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+HasMany RELACION 1-N: (en el padre)  *** ESTA ES LA MAS USADA
+    class Center extends Model
+    {
+        public function professionals()
+        {
+            return $this->hasMany(Professional::class);
+        }
+    }
+
+    $center = Center::find(1);
+
+    // Recorrerlos con un foreach
+    foreach ($center->professionals as $professional) {
+        echo $professional->name . "\n";
+    }
+
+    // Manera de Obtener todos los professionals
+    $center = Center::find(1);
+    $professionals = $center->professionals;
+
+    // Contar cuántos hay
+    $count = $center->professionals->count();
+
+    // Filtrar dentro de la colección
+    $activeProfessionals = $center->professionals->where('employment_status', 'Actiu');
+
+    // Obtener el primero / último
+    $first = $center->professionals->first();
+    $last  = $center->professionals->last();
+
+    // Agregar un profesional nuevo a ese centro
+    $center->professionals()->create([
+        'name' => 'Juan',
+        'surname1' => 'Pérez',
+    ]);
+
+
+hasOne RELACION 1-1: (en el padre)
+    class Center extends Model
+    {
+        public function professional()
+        {
+            return $this->hasOne(Professional::class);
+        }
+    }
+
+    // Acceso
+    $center = Center::find(1);
+    $professional = $center->professional;
+
+
+belongsToMany RELACION N-N 
+    class Center extends Model
+    {
+        public function professionals()
+        {
+            return $this->belongsToMany(Professional::class, 'center_professional', 'center_id', 'professional_id');
+        }
+    }
+    class Professional extends Model
+    {
+        public function centers()
+        {
+            return $this->belongsToMany(Center::class, 'center_professional', 'professional_id', 'center_id');
+        }
+    }
+
+    // Acceso
+    $center = Center::find(1);
+    $center->professionals; // todos los profesionales asignados a este centro
+
+    $professional = Professional::find(1);
+    $professional->centers; // todos los centros donde trabaja este profesional
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------

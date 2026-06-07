@@ -1,0 +1,72 @@
+****** SELECTORES CSS: ******
+.padre p {} - Selecciona TODOS los <p> dentro de .padre, sin importar profundidad. P1-P2-P3-P4-P5
+.padre > p {} - SOLO los hijos directos del div .padre. P1-P2-P5
+.padre + p {} - Selecciona SOLO el primer elemento justo después de .padre. P6
+.padre ~ p {} - Selecciona TODOS los <p> que sean elementos y estén después del div. P6-P7
+.padre p:first-child {} - Elige el primer elemento de cada elemento que este anidado - P1-P3-P4
+.padre p:last-child  {} - Elige el primer elemento de cada elemento que este anidado. P5-P4
+.padre p:nth-child(4) {} - Elige el cuarto P del .padre en este caso P5 -> este seria el orden que miraria 
+                            1. p P1  2. p P2  3. section 4. p P5. por tanto escogeria el P5.
+.padre p:nth-child(1) {} - Es lo mismo pero cuenta atras del nth-child, tambien elegiria P5.
+
+<div class="padre">
+    <p>P1</p>
+    <p>P2</p>
+
+    <section>
+        <p>P3 (anidado)</p>
+
+        <div>
+            <p>P4 (más profundo)</p>
+        </div>
+    </section>
+
+    <p>P5</p>
+</div>
+
+<p>P6 (fuera del div)</p>
+<p>P7 (fuera del div)</p>
+*****************************
+
+
+
+
+****** SELECTORES JS: ******
+document.documentElement -> Esto elige el <html> - no se usa
+document.body -> Esto elige el <body> y aqui ya se le puede hacer un .appendChild(element);
+
+---CREATE ELEMENT por ejemplo un <a href="">
+const link = document.createElement("a");
+link.textContent = "Ir a Google";
+link.href = "https://www.google.com";
+document.body.appendChild(link);
+
+---CREAR ATRIBUTOS A UNA TAG:
+1. con dataset:
+    div.dataset.id = "123";
+    div.dataset.userName = "juan";
+    
+2. Propiedades directas:
+    a.href = "https://google.com";
+    a.id = "link1";
+    a.className = "boton";
+    
+3. con setAttribute 
+    card.setAttribute("role", "button");  CON SET
+    let roleValue = card.getAttribute("role"); para guarar el valor de let. CON GET
+*****************************  
+
+
+
+    
+****** EVENTS JS: ******
+--- EVENTS de las funciones de addEventListener:
+    * event.target = el elemento exacto que fue clicado
+    * event.currentTarget = el elemento que tiene el listener, al que se le puso el addEventListener
+        · <button><span>X</span></button>
+        · Si clicas el <span> → event.target = <span>
+        · Si clicas el <button> → event.target = <button>
+    * let padre = event.target.parentElement; elige el padre del elemento que hiciste click    
+    
+*****************************
+

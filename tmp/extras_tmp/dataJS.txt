@@ -1,0 +1,7 @@
+// Escribir
+caja.dataset.id = "456";
+caja.setAttribute("data-id", "456");
+
+// Leer
+caja.dataset.id;
+caja.getAttribute("data-id");

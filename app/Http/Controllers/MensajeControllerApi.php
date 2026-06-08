@@ -14,7 +14,7 @@ class MensajeControllerApi extends Controller
     public function index()
     {
         $mensajes = Mensaje::where("remitente_id", auth()->user()->id)->get();
-        $mensajesdestinatarios = Mensaje::all();
+        $mensajesdestinatarios = Mensaje::where("destinatario_id", auth()->user()->id)->get();;
         $destinatarios = User::all();
     
         if ($mensajes->isEmpty()) {

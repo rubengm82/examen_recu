@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mensaje;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MensajeControllerApi extends Controller
@@ -14,29 +15,19 @@ class MensajeControllerApi extends Controller
     {
         $mensajes = Mensaje::where("remitente_id", auth()->user()->id)->get();
         $mensajesdestinatarios = Mensaje::all();
+        $destinatarios = User::all();
     
         if ($mensajes->isEmpty()) {
             $response = response()->json(["message" => "No hay aún mensajes", "mensajes" => null, "mensajesdestinatarios" => null], 200);
         } else {
-            $response = response()->json(["message" => "Hay mensajes", "mensajes" => $mensajes, "mensajesdestinatarios" => $mensajesdestinatarios], 200);
+            $response = response()->json(
+                ["message" => "Hay mensajes", 
+                "mensajes" => $mensajes, 
+                "mensajesdestinatarios" => $mensajesdestinatarios, 
+                "destinatarios" => $destinatarios], 200);
         }
         return $response;
     }
-
-    /**
-     * Display a listing of the resource de destinatarios
-     */
-    // public function index_destinatarios()
-    // {
-    //     $mensajes = Mensaje::all();
-    
-    //     if ($mensajes->isEmpty()) {
-    //         $response = response()->json(["message" => "No hay aún mensajes", "mensajesdestinatarios" => null], 200);
-    //     } else {
-    //         $response = response()->json(["message" => "Hay mensajes", "mensajesdestinatarios" => $mensajes], 200);
-    //     }
-    //     return $response;
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +39,6 @@ class MensajeControllerApi extends Controller
             "destinatario_id" => "required",
             "asunto" => "required|string",
             "mensaje" => "required|string",
-            "leido" => "required|boolean",
         ]);
         $validate["remitente_id"] = auth()->user()->id;
         

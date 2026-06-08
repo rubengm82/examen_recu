@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>Crear proyecto</title>
-    @vite("resources/css/app.css")
+    @vite("resources/css/app2.css")
 </head>
 <body>
     <a href="{{ route("dashboard") }}" class="link_volver">Volver</a>
@@ -17,10 +17,12 @@
 
     <form id="createForm" class="form" method="POST">
         @csrf
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre"> Nombre<br>
-        <input type="text" name="descripcion" id="descripcion" placeholder="Descripción"> Descripción<br>
-        <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha inicio"> Fecha inicio<br>
-        <input type="date" name="fecha_fin" id="fecha_fin" placeholder="Fecha fin"> Fecha fin<br><br>
+        <select name="destinatario_id" id="destinatario_select_id">
+            
+        </select> destinatario<br>
+        {{-- <input type="text" name="destinatario_id" id="destinatario_id" placeholder="destinatario"> destinatario<br> --}}
+        <input type="text" name="asunto" id="asunto" placeholder="asunto"> asunto<br>
+        <input type="text" name="mensaje" id="mensaje" placeholder="mensaje"> mensaje<br><br>
 
         <button type="submit">Aceptar</button>
     </form>
@@ -28,6 +30,6 @@
 
     <div id="createMessage" style="color:green"></div>
 
-@vite('resources/js/projects/create.js')
+@vite('resources/js/mensajes/create.js')
 </body>
 </html>

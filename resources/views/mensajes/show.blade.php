@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>Show Mensaje</title>
-    @vite("resources/css/app.css")
+    @vite("resources/css/app2.css")
 </head>
 <body>
     <a href="{{ route("dashboard") }}" class="link_volver">Volver</a>

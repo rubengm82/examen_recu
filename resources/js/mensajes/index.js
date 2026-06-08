@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data.mensajes);
-        console.log(data.mensajesdestinatarios);
+        // console.log(data.mensajes);
+        // console.log(data.mensajesdestinatarios);
+
+        console.log(data);
+        
 
         let mensajesEntada = data.mensajes;
         let mensajesSalida = data.mensajesdestinatarios;

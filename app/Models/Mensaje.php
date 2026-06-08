@@ -20,4 +20,9 @@ class Mensaje extends Model
     {
         return $this->belongsTo(User::class, "remitente_id");
     }
+    
+    // public function destinatarios()
+    // {
+    //     return $this->hasMany(User::class);
+    // }
 }

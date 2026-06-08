@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   
   <title>Examen Laravel API</title>
-  @vite("resources/css/app.css")
+  @vite("resources/css/app2.css")
 </head>
 
 <body>
@@ -15,7 +15,7 @@
   <header>
     <div>
       <h1>Examen Laravel API</h1>
-      <p>Usuario: <strong>{{auth()->user()->name}} | ({{auth()->user()->departamento}})</strong></p>
+      <p><strong>Bienvenido, {{auth()->user()->name}}!</strong></p>
     </div>
     <div>
       <form action="{{ route('logout') }}" method="POST">
@@ -25,27 +25,35 @@
     </div>
   </header>
 
-  <a href="{{ route("projects.create") }}">Nuevo Item</a>
+  <a href="{{ route("mensajes.create") }}">Nuevo Mensaje</a>
   {{-- <a href="{{ route("owners") }}">Content Owners</a> --}}
  
   <main class="layout">
 
-    <aside class="sidebar">
-      {{-- <h2>Llistat de Items</h2>
-      <p>Projecte 1</p>--}}
-    </aside>
+    {{--<aside class="sidebar">
+       <h2>Llistat de Items</h2>
+      <p>Projecte 1</p>
+    </aside>--}}
 
-    <article class="featured">
-      {{-- Projecte 1: És el projecte més nou  --}}
-    </article>
+    {{--<article class="featured">
+       Projecte 1: És el projecte més nou  
+    </article>--}}
 
-    <section class="news">
-      {{-- <article class="card">Tasca 1 del projecte seleccionat </article>
-      <article class="card">Tasca 2 del projecte seleccionat</article>--}}
-    </section>
+    {{--<section class="news">
+       <article class="card">Tasca 1 del projecte seleccionat </article>
+      <article class="card">Tasca 2 del projecte seleccionat</article>
+    </section>--}}
+
+    <div id="mensajes_entrada" class="mensajes_entrada">
+      {{-- mensajes_entrada --}}
+    </div>
+    
+    <div id="mensajes_salida" class="mensajes_salida">
+      {{-- mensajes_salida --}}
+    </div>
 
   </main>
 
-@vite("resources/js/projects/index.js")
+@vite("resources/js/mensajes/index.js")
 </body>
 </html>
